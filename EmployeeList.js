@@ -5,88 +5,9 @@ import React, {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
 } from 'react-native';
 
-// const MOCKED_EMPLOYEE_DATA = [
-//   {name: 'Nikos', role: 'Sucker', image:{thumbnail: 'http://loremflickr.com/60/60'} },
-//   {name: 'Ramon', role: 'Writer of bugs', image:{thumbnail: 'http://loremflickr.com/60/60'} },
-// ];
-const REQUEST_URL= 'https://rawgit.com/RamonGebben/b95069c3088a35f5642530f20ecbbdcc/raw/4c2947d34dd2a282a125cf19e57478a4932feda7/resumatorData.json';
-
-class EmployeeList extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-        dataSource: new ListView.DataSource({
-          rowHasChanged: (row1, row2) => row1 !== row2,
-        }),
-        loaded: false,
-    };
-  }
-
-  detailPage() {
-    this.props.toRoute({
-      name: "A new screen",
-      component: HelloPage
-    });
-  }
-
-
-  renderLoadingView() {
-     return (
-       <View style={styles.container}>
-        <Text>
-          Loading movies...
-        </Text>
-       </View> );
-  }
-
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    fetch(REQUEST_URL)
-    .then((response) => response.json())
-    .then((responseData) => { this.setState({ dataSource: this.state.dataSource.cloneWithRows(responseData._embedded.employees),
-      loaded: true,
-     });
-   })
-   .done();
-  }
-
-  renderEmployee(employee) {
-    return (
-      <View style={styles.container}>
-
-          <Image
-            source={{uri: 'http://loremflickr.com/60/60'}}
-            style={styles.thumbnail}
-          />
-          <View style={styles.rightContainer}>
-            <Text style={styles.title}>{employee.fullName}</Text>
-            <Text style={styles.subtitle}>{employee.role}</Text>
-          </View>
-
-      </View>
-    );
-  }
-
-  render() {
-    if (!this.state.loaded) {
-       return this.renderLoadingView();
-    }
-
-    return (
-      <ListView
-       dataSource={this.state.dataSource}
-       renderRow={this.renderEmployee}
-       style={styles.listView} />
-    );
-  }
-};
+const REQUEST_URL = 'https://rawgit.com/RamonGebben/b95069c3088a35f5642530f20ecbbdcc/raw/4c2947d34dd2a282a125cf19e57478a4932feda7/resumatorData.json';
 
 const styles = StyleSheet.create({
   listView: {
@@ -119,5 +40,86 @@ const styles = StyleSheet.create({
   },
 
 });
+
+class EmployeeList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: new ListView.DataSource(
+        {
+          rowHasChanged: (row1, row2) => row1 !== row2,
+        }),
+      loaded: false,
+    };
+  }
+
+  componentWillMount() {
+    console.log('blah blah');
+    const navigator = this.props.navigator;
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    fetch(REQUEST_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState(
+        {
+          dataSource: this.state.dataSource.cloneWithRows(responseData._embedded.employees),
+          loaded: true,
+        });
+    })
+   .done();
+  }
+
+  renderLoadingView() {
+    return (
+     <View style={styles.container}>
+      <Text>
+        Loading employees...
+      </Text>
+     </View>);
+  }
+
+  renderEmployee(employee) {
+    return (
+      <View style={styles.container}>
+
+          <Image
+            source={{ uri: 'http://loremflickr.com/60/60' }}
+            style={styles.thumbnail}
+          />
+          <View style={styles.rightContainer}>
+            <Text style={styles.title}>{employee.fullName}</Text>
+            <Text style={styles.subtitle}>{employee.role}</Text>
+          </View>
+
+      </View>
+    );
+  }
+
+  render() {
+    console.log('ja hoor employee');
+    // if (!this.state.loaded) {
+    //   console.log('Now?');
+    //   return this.renderLoadingView();
+    // }
+
+    return (
+      // <ListView
+      //   dataSource={this.state.dataSource}
+      //   renderRow={this.renderEmployee}
+      //   style={styles.listView}
+      // />
+      <View style={styles.rightContainer}>
+        <Text style={styles.title}>'Ja hoor'</Text>
+      </View>
+    );
+  }
+}
 
 export default EmployeeList;

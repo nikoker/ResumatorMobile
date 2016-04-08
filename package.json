@@ -3,10 +3,37 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "lint": "eslint *.js"
   },
   "dependencies": {
     "react": "^0.14.8",
-    "react-native": "^0.22.2"
+    "react-native": "^0.22.2",
+    "react-native-material-design": "^0.3.3"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "rules": {
+      "max-len": 0,
+      "consistent-return": 0,
+      "new-cap": 0,
+      "no-param-reassign": 0,
+      "no-shadow": 0,
+      "no-unused-vars": 0,
+      "react/jsx-no-bind": 0,
+      "react/prop-types": 0,
+      "no-alert": 0,
+      "no-console": 0,
+      "no-case-declarations": 0,
+      "react/prefer-stateless-function": 0
+    },
+    "env": {
+      "mocha": true
+    }
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-babel": "^3.1.0",
+    "eslint-plugin-react": "^4.3.0"
   }
 }
