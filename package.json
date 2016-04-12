@@ -28,6 +28,10 @@
     },
     "env": {
       "mocha": true
+    },
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "generators": true
     }
   },
   "devDependencies": {

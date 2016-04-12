@@ -28,6 +28,9 @@ project.xcworkspace
 .gradle
 local.properties
 
+# Visual Studio Code
+.vscode
+
 # node.js
 #
 node_modules/
