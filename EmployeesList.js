@@ -14,7 +14,9 @@ const REQUEST_URL = 'https://rawgit.com/RamonGebben/b95069c3088a35f5642530f20ecb
 const styles = StyleSheet.create({
   listView: {
     backgroundColor: '#F5FCFF',
-    padding: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 80,
   },
   container: {
     flex: 1,

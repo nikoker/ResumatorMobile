@@ -10,6 +10,7 @@ const {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 100,
   },
   title: {
     fontSize: 20,
